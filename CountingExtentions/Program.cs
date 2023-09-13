@@ -16,10 +16,18 @@ string path;
 
 // Let's check if the application has launch arguments
 if (arguments.Any())
-    // We expect the first argument to be the path to the folder to be scanned
-    if (Directory.Exists(arguments.First()))
-        // And if the path exists, save it
-        path = arguments.First();
+{
+    foreach (var arg in arguments)
+    {
+        // We expect the first argument to be the path to the folder to be scanned
+        if (Directory.Exists(arg))
+        {
+            // And if the path exists, save it
+            path = arg;
+            break;
+        }
+    }
+}
 
 var logger = new MinimalisticLogger();
 
